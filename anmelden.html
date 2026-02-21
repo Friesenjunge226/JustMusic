@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <style>
-html{
+html { 
  font-family: "Roboto", sans-serif;
   font-optical-sizing: auto;
   font-weight: 100;
@@ -21,15 +21,35 @@ html{
  background-color: black;
  color: white;
 }
+#iframe {
+  height: 90vh;
+  width: 90%;
+}
+#back {
+  border: 2px solid grey;
+  padding: 10px;
+  background-color: black;
+  color:white;
+  cursor: pointer;
+  border-radius: 10px;
+}
+#back:hover {
+    border: 2px solid grey;
+  padding: 10px;
+  background-color: rgb(255, 255, 255);
+  color:black;
+  cursor: pointer;
+  border-radius: 13px;
+  box-shadow:0 4px 8px 0 white;
+}
 </style>
 <body>
-<div id="contentwrapper">
+<div id="content wrapper">
  <div id="topbar">
- <h1 id="header">Anmeldeformular Just Music 2026</h1>
- 
+ <button id="back" onclick="location.href='index.html'">←Zurück</button><h1 id="header">Anmeldeformular Just Music 2026</h1>
  </div>
  <div id="form">
-  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScFaKJQlXDk59J5SHChpfiaOML1VfwZWvWYl8vxHzWXLatmgg/viewform?embedded=true" width="640" height="808" frameborder="0" marginheight="0" marginwidth="0">Wird geladen…</iframe>
+  <iframe id="iframe" src="https://docs.google.com/forms/d/e/1FAIpQLScFaKJQlXDk59J5SHChpfiaOML1VfwZWvWYl8vxHzWXLatmgg/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Wird geladen…</iframe>
  </div>
 </div>
 </body>
