@@ -1,89 +1,167 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name='description' comtent="Just Music 2026 Programm">
-<meta name="keywords" content="HTS, JustMusic, Just, Music, Just Music">
-<meta name="author" content="Friesenjunge226">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>Just Music | Hermann-Tast-Schule Husum</title>
+    <style>
+        /* Grundlegendes Design */
+        :root {
+            --primary-color: #ff4757; /* Ein knalliges Rot-Pink als Akzentfarbe */
+            --bg-color: #121212; /* Dunkler Hintergrund für Konzert-Vibe */
+            --text-color: #f1f2f6;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Roboto", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Header / Navigation */
+        header {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+            letter-spacing: 2px;
+            color: var(--primary-color);
+        }
+
+        /* Hero Bereich (Startbildschirm) */
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 1)), url('background.jpg') center/cover;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #ff6b81;
+        }
+
+        /* Container für die Inhalte */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        /* Sponsoren-Bereich */
+        .sponsors {
+            background-color: #1e1e1e;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 2px solid var(--primary-color);
+        }
+
+        .sponsor-logos {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .sponsor-box {
+            width: 150px;
+            height: 80px;
+            background-color: white;
+            color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            font-weight: bold;
+            /* Hier später das echte Bild einfügen via <img src="..."> */
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #000;
+            font-size: 0.9rem;
+            color: #747d8c;
+        }
+
+        /* Responsive Design für Handys */
+        @media (max-width: 600px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
-<style>
-html {
- font-family: "Roboto", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 100;
-  font-style: normal;
-  font-variation-settings:
-    "wdth" 100;
- background-color: black;
- color: white;
-}
-#register {
-  border: 2px solid grey;
-  padding: 5em;
-  background-color: black;
-  color:white;
-  cursor: pointer;
-  border-radius: 10px;
-}
-#register:hover {
-  border: 0.2em solid grey;
-  padding: 5em;
-  background-color: rgb(255, 255, 255);
-  color:black;
-  cursor: pointer;
-  border-radius: 13px;
-  box-shadow:0 4px 8px 0 white;
-}
-#program {
-  border: 0.2em solid grey;
-  padding: 5em;
-  background-color: black;
-  color:white;
-  cursor: pointer;
-  border-radius: 10px;
-}
-#program:hover {
-  border: 0.2em solid grey;
-  padding: 5em;
-  background-color: red;
-  color:black;
-  cursor: not-allowed;
-  border-radius: 13px;
-  box-shadow:0 4px 8px 0 red;
-}
-#footer {
-  width: 100%;
-  height: 50px;
-  background: #387FD4;
-  background: linear-gradient(90deg,rgba(56, 127, 212, 1) 0%, rgba(255, 0, 0, 1) 50%, rgba(255, 170, 0, 1) 100%);
-  border: 0.2em solid gray;
-  text-align: bottom;
-  color: white;
-  font-weight: 100;
-  font-size: medium;
-}
-#mt {
-  height: 70.2vh;
-}
-</style>
 <body>
-<div id="contentwrapper">
-    <div id="topbar">
-      <h1 id="header">Just Music 2026</h1>
-    </div>
-    <div id="navpanel">
-      <button id="register" onclick="location.href='register.html'">Anmeldung<br>Bis zum 06.03.26</button> <button id="program" onclick="location.href='program.html'" disabled>Programm<br>Nicht verfügbar</button>
-    </div>
-    <div id="mt">
 
-    </div>
-    <div id="footer">
-      <p>Made with ❤️ by Friesenjunge226</p>
-   </div>
-</div>
+    <header>
+        <h1>JUST MUSIC</h1>
+    </header>
+
+    <section class="hero">
+        <h2>Die Bühne gehört euch!</h2>
+        <p>Das Live-Musik-Event der Hermann-Tast-Schule Husum</p>
+        <p>Am 24.03.2026 um 19:00Uhr in der Aula der HTS</p>
+        
+        <a href="register.html" class="btn">Jetzt bis zum 06.03.2026 anmelden!</a>
+    </section>
+
+    <section class="container">
+        <h3>Über das Event</h3>
+        <p>Egal ob Band, Solo-Künstlerin, Chor oder Instrumental – bei "Just Music" bringen wir die Talente der Hermann-Tast-Schule auf eine gemeinsame Bühne. Organisiert von der Klasse 9c, erwartet euch ein Abend voller Musik, guter Stimmung und Gemeinschaft.</p>
+        <p>Ihr wollt auftreten? Füllt einfach unser Anmeldeformular aus und werdet Teil des Line-ups!</p>
+    </section>
+
+    <section class="sponsors">
+        <h3>Mit freundlicher Unterstützung von:</h3>
+        <div class="sponsor-logos">
+            <div class="sponsor-box">
+                <img height="70px" src="husumer-mineralbrunnen-blue.svg" alt="Logo Husumer Mineralbrunnen">
+            </div>
+            <div class="sponsor-box">
+                [Logo: Förderverein HTS]
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Ein Projekt der Klasse 9c | Hermann-Tast-Schule Husum</p>
+        <p>Kontakt: till.burmester@hts-portal.de</p>
+    </footer>
+
 </body>
-<script>
-
-</script>
 </html>
