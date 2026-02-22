@@ -8,15 +8,79 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <style>
-
+html {
+ font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 100;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+ background-color: black;
+ color: white;
+}
+#register {
+  border: 2px solid grey;
+  padding: 5em;
+  background-color: black;
+  color:white;
+  cursor: pointer;
+  border-radius: 10px;
+}
+#register:hover {
+  border: 0.2em solid grey;
+  padding: 5em;
+  background-color: rgb(255, 255, 255);
+  color:black;
+  cursor: pointer;
+  border-radius: 13px;
+  box-shadow:0 4px 8px 0 white;
+}
+#program {
+  border: 0.2em solid grey;
+  padding: 5em;
+  background-color: black;
+  color:white;
+  cursor: pointer;
+  border-radius: 10px;
+}
+#program:hover {
+  border: 0.2em solid grey;
+  padding: 5em;
+  background-color: red;
+  color:black;
+  cursor: not-allowed;
+  border-radius: 13px;
+  box-shadow:0 4px 8px 0 red;
+}
+#footer {
+  width: 100%;
+  height: 50px;
+  background: #387FD4;
+  background: linear-gradient(90deg,rgba(56, 127, 212, 1) 0%, rgba(255, 0, 0, 1) 50%, rgba(255, 170, 0, 1) 100%);
+  border: 0.2em solid gray;
+  text-align: bottom;
+  color: white;
+  font-weight: 100;
+  font-size: medium;
+}
+#mt {
+  height: 70.2vh;
+}
 </style>
 <body>
 <div id="contentwrapper">
- <div id="topbar">
- <h1 id="header">Programm von Just Music 2026</h1>
-<h2>Website im Bau</h2>
-<a href="https://justmusic.ddns.net/anmelden">Zur Anmeldung
- </div>
+    <div id="topbar">
+      <h1 id="header">Just Music 2026</h1>
+    </div>
+    <div id="navpanel">
+      <button id="register" onclick="location.href='register.html'">Anmeldung<br>Bis zum 06.03.26</button> <button id="program" onclick="location.href='program.html'" disabled>Programm<br>Nicht verfügbar</button>
+    </div>
+    <div id="mt">
+
+    </div>
+    <div id="footer">
+      <p>Made with ❤️ by Friesenjunge226</p>
+   </div>
 </div>
 </body>
 <script>
