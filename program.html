@@ -1,24 +1,241 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name='description' comtent="Just Music 2026 Programm">
-<meta name="keywords" content="HTS, JustMusic, Just, Music, Just Music">
-<meta name="author" content="Friesenjunge226">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programm | Just Music</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Grundlegendes Design (wie bei den anderen Seiten) */
+        :root {
+            --primary-color: #ff4757; 
+            --bg-color: #121212; 
+            --text-color: #f1f2f6;
+            --card-bg: rgba(30, 30, 30, 0.85);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.9)), url('background.jpg') center/cover fixed;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 15px 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            color: var(--text-color);
+        }
+        
+        header h1 span {
+            color: var(--primary-color);
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 5px;
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: white;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .intro-text {
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        /* Programm-Liste (Die Karten für die Acts) */
+        #program-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .program-card {
+            background-color: var(--card-bg);
+            border-left: 4px solid var(--primary-color);
+            padding: 15px 20px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            text-align: left;
+        }
+
+        .time {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            min-width: 80px;
+        }
+
+        .act-details {
+            flex-grow: 1;
+            padding-left: 15px;
+        }
+
+        .act-name {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .act-genre {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Lade-Animation / Fehlermeldung */
+        #loading-msg {
+            color: #aaa;
+            font-style: italic;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #000;
+            font-size: 0.9rem;
+            color: #747d8c;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 600px) {
+            .program-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .time {
+                margin-bottom: 5px;
+            }
+            .act-details {
+                padding-left: 0;
+            }
+        }
+    </style>
 </head>
-<style>
-
-</style>
 <body>
-<div id="contentwrapper">
- <div id="topbar">
- <h1 id="header">Programm von Just Music 2026</h1>
- 
- </div>
-</div>
-</body>
-<script>
 
-</script>
+    <header>
+        <h1>JUST <span>MUSIC</span></h1>
+        <a href="index.html" class="back-link">← Zurück zur Startseite</a>
+    </header>
+
+    <div class="container">
+        <h2>Line-Up & Zeitplan</h2>
+        <p class="intro-text">Hier siehst du, wer wann auf der Bühne steht. Änderungen vorbehalten!</p>
+        
+        <div id="program-list">
+            <p id="loading-msg">Programm wird geladen...</p>
+            </div>
+    </div>
+
+    <footer>
+        <p>Ein Projekt der Klasse 9c | Hermann-Tast-Schule Husum</p>
+    </footer>
+
+    <script>
+        // HIER DEINEN GOOGLE SHEETS CSV-LINK EINTRAGEN
+        const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTF3GiWgjDjVtSZOUsnfa2sbAub5BuQbPCA5f4J5gEvcmruLzy4yvow4WWjNWdFltmdJdNDl_-GvPWw/pubhtml';
+
+        async function loadProgram() {
+            try {
+                // Wenn du noch keinen Link hast, zeige Beispieldaten:
+                if (csvUrl === 'DEIN_CSV_LINK_HIER_EINTRAGEN') {
+                    document.getElementById('program-list').innerHTML = `
+                        <p style="color: #ff4757;">Bitte trage noch deinen Google Sheets CSV-Link im Code ein!</p>
+                        <div class="program-card">
+                            <div class="time">18:00</div>
+                            <div class="act-details">
+                                <p class="act-name">Beispiel-Band (Platzhalter)</p>
+                                <p class="act-genre">Rock / Pop</p>
+                            </div>
+                        </div>
+                    `;
+                    return;
+                }
+
+                // Daten von Google Sheets laden
+                const response = await fetch(csvUrl);
+                const data = await response.text();
+                
+                // Zeilen aufteilen (trennen bei jedem Zeilenumbruch)
+                const rows = data.split('\\n');
+                const listContainer = document.getElementById('program-list');
+                listContainer.innerHTML = ''; // Lade-Text entfernen
+
+                // Gehe durch alle Zeilen (wir starten bei i=1, um die Überschrift-Zeile zu überspringen)
+                for (let i = 1; i < rows.length; i++) {
+                    // Spalten aufteilen (getrennt durch Komma)
+                    // WICHTIG: Vermeide Kommas in den Texten der Tabelle, sonst verschieben sich die Spalten!
+                    const columns = rows[i].split(','); 
+                    
+                    if (columns.length >= 2 && columns[0].trim() !== '') {
+                        const time = columns[0].trim();
+                        const actName = columns[1].trim();
+                        const genre = columns.length > 2 ? columns[2].trim() : ''; // Optional: Dritte Spalte für Genre/Song
+
+                        // HTML-Karte für diesen Act erstellen
+                        const card = document.createElement('div');
+                        card.className = 'program-card';
+                        card.innerHTML = `
+                            <div class="time">${time}</div>
+                            <div class="act-details">
+                                <p class="act-name">${actName}</p>
+                                <p class="act-genre">${genre}</p>
+                            </div>
+                        `;
+                        listContainer.appendChild(card);
+                    }
+                }
+            } catch (error) {
+                console.error('Fehler beim Laden des Programms:', error);
+                document.getElementById('program-list').innerHTML = '<p>Das Programm konnte leider nicht geladen werden. Bitte versuche es später noch einmal.</p>';
+            }
+        }
+
+        // Funktion starten, wenn die Seite lädt
+        loadProgram();
+    </script>
+
+</body>
 </html>
