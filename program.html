@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Programm | Just Music</title>
+    <title>Programm Tabelle | Just Music</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +14,8 @@
             --primary-color: #ff4757; 
             --bg-color: #121212; 
             --text-color: #f1f2f6;
-            --card-bg: rgba(30, 30, 30, 0.85);
+            --table-bg: rgba(30, 30, 30, 0.9);
+            --border-color: #444;
         }
 
         body {
@@ -22,134 +23,109 @@
             font-family: 'Roboto', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            line-height: 1.6;
             background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.9)), url('background.jpg') center/cover fixed;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         header {
             background-color: rgba(0, 0, 0, 0.9);
-            padding: 15px 20px;
+            padding: 20px;
             text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
             border-bottom: 2px solid var(--primary-color);
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 1.8rem;
-            letter-spacing: 1px;
-            color: var(--text-color);
-        }
-        
-        header h1 span {
-            color: var(--primary-color);
-        }
-
-        .back-link {
-            display: block;
-            margin-top: 5px;
-            color: #aaa;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s;
-        }
-
-        .back-link:hover {
-            color: white;
-        }
-
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 40px auto;
-            padding: 20px;
-            text-align: center;
-        }
-
-        h2 {
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-
-        .intro-text {
-            margin-bottom: 30px;
-            font-weight: 300;
-        }
-
-        #program-list {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .program-card {
-            background-color: var(--card-bg);
-            border-left: 4px solid var(--primary-color);
-            padding: 15px 20px;
-            border-radius: 4px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-            text-align: left;
-            transition: transform 0.2s;
-        }
-
-        .program-card:hover {
-            transform: translateX(5px);
-        }
-
-        .time {
-            font-weight: 700;
-            color: var(--primary-color);
-            font-size: 1.1rem;
-            min-width: 70px;
-        }
-
-        .act-details {
+            padding: 0 20px;
             flex-grow: 1;
-            padding-left: 15px;
         }
 
-        .act-name {
-            margin: 0;
-            font-size: 1.1rem;
-            font-weight: 700;
+        /* Das gewünschte Div mit der Tabelle */
+        .table-container {
+            background-color: var(--table-bg);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            overflow-x: auto; /* Scrollbar auf Handys */
         }
 
-        .act-genre-interpret {
-            margin: 0;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding: 12px;
+            text-transform: uppercase;
             font-size: 0.9rem;
-            color: #aaa;
         }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 1rem;
+        }
+
+        tr:hover {
+            background-color: rgba(255, 71, 87, 0.1);
+        }
+
+        .time-col { font-weight: bold; color: var(--primary-color); width: 80px; }
+        .genre-tag { font-size: 0.85rem; color: #aaa; }
 
         footer {
             text-align: center;
             padding: 20px;
             background-color: #000;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: #747d8c;
-            margin-top: 40px;
-        }
-
-        @media (max-width: 600px) {
-            .program-card {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .time {
-                margin-bottom: 5px;
-            }
-            .act-details {
-                padding-left: 0;
-            }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>JUST <span>MUSIC</span></h1>
-        <a href="index.html" class="back-link">← Zurück zur Startseite</a>
-    </header>
+<header>
+    <h1>JUST <span>MUSIC</span></h1>
+</header>
+
+<div class="container">
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Uhrzeit</th>
+                    <th>Titel</th>
+                    <th>Genre</th>
+                    <th>Interpret</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td class="time-col">19:00</td><td>Divenire</td><td class="genre-tag">Neoklassik</td><td>Anhin Danieliian</td></tr>
+                <tr><td class="time-col">19:05</td><td>Bruder Jakob, Hard Rock Blues</td><td class="genre-tag">Blues Rock</td><td>MIP</td></tr>
+                <tr><td class="time-col">19:07</td><td>Our House</td><td class="genre-tag">Pop</td><td>9c & Gäste</td></tr>
+                <tr><td class="time-col">19:13</td><td>Polly</td><td class="genre-tag">Rock</td><td>Jorin Wichern</td></tr>
+                <tr><td class="time-col">19:18</td><td>Прекрасное далёко</td><td class="genre-tag">Pop / Klassik</td><td>Vira Musii</td></tr>
+                <tr><td class="time-col">19:23</td><td>Allegro Apassionata</td><td class="genre-tag">Klassik</td><td>Jonas Heller</td></tr>
+                <tr><td class="time-col">19:28</td><td>Not Fair</td><td class="genre-tag">Folk / Pop</td><td>7b</td></tr>
+                <tr><td class="time-col">19:35</td><td>Can you feel the Love tonight</td><td class="genre-tag">Filmmusik</td><td>Janicke Dickau</td></tr>
+                <tr><td class="time-col">19:45</td><td>Pink-Floyd-Medley</td><td class="genre-tag">Alternative / Rock</td><td>2fight insomnia</td></tr>
+                <tr><td class="time-col">19:50</td><td>Paeludium c-moll BWV999</td><td class="genre-tag">Klassik</td><td>Jonas Heller</td></tr>
+                <tr><td class="time-col">19:55</td><td>The Emptiness Machine</td><td class="genre-tag">Rock / Modern</td><td>Tim Lohmann</td></tr>
+                <tr><td class="time-col">20:02</td><td>House of the Rising Sun</td><td class="genre-tag">House</td><td>The Generations</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<footer>
+    <p>Projekt der Klasse 9c | Hermann-Tast-Schule Husum</p>
+</footer>
+
+</body>
+</html>
