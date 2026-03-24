@@ -10,7 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Grundlegendes Design (wie bei den anderen Seiten) */
         :root {
             --primary-color: #ff4757; 
             --bg-color: #121212; 
@@ -27,7 +26,6 @@
             background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.9)), url('background.jpg') center/cover fixed;
         }
 
-        /* Header */
         header {
             background-color: rgba(0, 0, 0, 0.9);
             padding: 15px 20px;
@@ -62,7 +60,6 @@
             color: white;
         }
 
-        /* Main Container */
         .container {
             max-width: 800px;
             margin: 40px auto;
@@ -80,7 +77,6 @@
             font-weight: 300;
         }
 
-        /* Programm-Liste (Die Karten für die Acts) */
         #program-list {
             display: flex;
             flex-direction: column;
@@ -97,13 +93,18 @@
             align-items: center;
             box-shadow: 0 4px 6px rgba(0,0,0,0.3);
             text-align: left;
+            transition: transform 0.2s;
+        }
+
+        .program-card:hover {
+            transform: translateX(5px);
         }
 
         .time {
             font-weight: 700;
             color: var(--primary-color);
-            font-size: 1.2rem;
-            min-width: 80px;
+            font-size: 1.1rem;
+            min-width: 70px;
         }
 
         .act-details {
@@ -113,23 +114,16 @@
 
         .act-name {
             margin: 0;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 700;
         }
 
-        .act-genre {
+        .act-genre-interpret {
             margin: 0;
             font-size: 0.9rem;
             color: #aaa;
         }
 
-        /* Lade-Animation / Fehlermeldung */
-        #loading-msg {
-            color: #aaa;
-            font-style: italic;
-        }
-
-        /* Footer */
         footer {
             text-align: center;
             padding: 20px;
@@ -159,83 +153,3 @@
         <h1>JUST <span>MUSIC</span></h1>
         <a href="index.html" class="back-link">← Zurück zur Startseite</a>
     </header>
-
-    <div class="container">
-        <h2>Line-Up & Zeitplan</h2>
-        <p class="intro-text">Hier siehst du, wer wann auf der Bühne steht. Änderungen vorbehalten!</p>
-        
-        <div id="program-list">
-            <p id="loading-msg">Programm wird geladen...</p>
-            </div>
-    </div>
-
-    <footer>
-        <p>Ein Projekt der Klasse 9c | Hermann-Tast-Schule Husum</p>
-    </footer>
-
-    <script>
-        // HIER DEINEN GOOGLE SHEETS CSV-LINK EINTRAGEN
-        const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTF3GiWgjDjVtSZOUsnfa2sbAub5BuQbPCA5f4J5gEvcmruLzy4yvow4WWjNWdFltmdJdNDl_-GvPWw/pub?gid=1765069440&single=true&output=csv';
-
-        async function loadProgram() {
-            try {
-                // Wenn du noch keinen Link hast, zeige Beispieldaten:
-                if (csvUrl === 'https://docs.google.com/spreadsheets/d/1x9gRm-jfuJ8HJRhnUrjQGWrekNjKvv42Og0W0W8fWTE/edit') {
-                    document.getElementById('program-list').innerHTML = `
-                        <p style="color: #ff4757;">Bitte trage noch deinen Google Sheets CSV-Link im Code ein!</p>
-                        <div class="program-card">
-                            <div class="time">18:00</div>
-                            <div class="act-details">
-                                <p class="act-name">Beispiel-Band (Platzhalter)</p>
-                                <p class="act-genre">Rock / Pop</p>
-                            </div>
-                        </div>
-                    `;
-                    return;
-                }
-
-                // Daten von Google Sheets laden
-                const response = await fetch(csvUrl);
-                const data = await response.text();
-                
-                // Zeilen aufteilen (trennen bei jedem Zeilenumbruch)
-                const rows = data.split('\\n');
-                const listContainer = document.getElementById('program-list');
-                listContainer.innerHTML = ''; // Lade-Text entfernen
-
-                // Gehe durch alle Zeilen (wir starten bei i=1, um die Überschrift-Zeile zu überspringen)
-                for (let i = 1; i < rows.length; i++) {
-                    // Spalten aufteilen (getrennt durch Komma)
-                    // WICHTIG: Vermeide Kommas in den Texten der Tabelle, sonst verschieben sich die Spalten!
-                    const columns = rows[i].split(','); 
-                    
-                    if (columns.length >= 2 && columns[0].trim() !== '') {
-                        const time = columns[0].trim();
-                        const actName = columns[1].trim();
-                        const genre = columns.length > 2 ? columns[2].trim() : ''; // Optional: Dritte Spalte für Genre/Song
-
-                        // HTML-Karte für diesen Act erstellen
-                        const card = document.createElement('div');
-                        card.className = 'program-card';
-                        card.innerHTML = `
-                            <div class="time">${time}</div>
-                            <div class="act-details">
-                                <p class="act-name">${actName}</p>
-                                <p class="act-genre">${genre}</p>
-                            </div>
-                        `;
-                        listContainer.appendChild(card);
-                    }
-                }
-            } catch (error) {
-                console.error('Fehler beim Laden des Programms:', error);
-                document.getElementById('program-list').innerHTML = '<p>Das Programm konnte leider nicht geladen werden. Bitte versuche es später noch einmal.</p>';
-            }
-        }
-
-        // Funktion starten, wenn die Seite lädt
-        loadProgram();
-    </script>
-
-</body>
-</html>
